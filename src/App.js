@@ -1,21 +1,34 @@
 import React, { Component } from "react";
-import SecondDiv from "./secondDiv";
+import NewComponent from "./NewComponent";
+import NewProps from "./components/Newprops";
 
 class App extends Component {
-  myname = "I am ali";
-
-  mydetails = {
-    name: "ali",
+  state = {
+    name: "ali murtuza",
     age: 21
+  };
+
+  onFormSubmit = event => {
+    event.preventDefault();
+    console.log(event);
+
+    // this.state["name"] = "ali haider";
+    this.setState({
+      name: "ali haider"
+    });
   };
 
   render() {
     return (
-      <div>
-        <div style={{ width: 100, height: 100, backgroundColor: "red" }}></div>
-        <SecondDiv name={this.mydetails} />
-        <p>{this.myname}</p>
-        <p>{this.mydetails.name}</p>
+      <div style={{ width: "100%", height: 400 }}>
+        {/* <NewComponent name="tallal" /> */}
+        <NewProps>{this.state.name}</NewProps>
+
+        <form onSubmit={this.onFormSubmit}>
+          <input value={this.state.name} type="text" placeholder="name" />
+          <input type="text" placeholder="age" />
+          <input type="submit" />
+        </form>
       </div>
     );
   }
